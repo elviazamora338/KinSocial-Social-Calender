@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isLiked = false;
   bool _isCommenting = false;
   // Store comments as objects of Comment class
-  final List<String> _comments = [];
+  final List<Comment> _comments = [];
 
   @override
   void initState() {
@@ -239,12 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.send),
-                                onPressed: () {
-                                  addsDescription('username123');
-                                },
-                              ),
+
                             ],
                           )),
 
@@ -284,13 +279,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
+                                
                                 IconButton(
                                   icon: const Icon(Icons.send),
                                   onPressed: () {
                                     //Check if the button press works
                                     print("Send button pressed"); //DOES WORKS
                                     // Trigger the comment addition
-                                    addsDescription('username123');
+                                    addsComment('username123');
                                   },
                                 ),
                               ],
@@ -302,6 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ListView.builder(
                                 itemCount: _comments.length,
                                 itemBuilder: (context, index) {
+                                  final comment = _comments[index];  // Access the Comment object
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 4.0),
@@ -309,15 +306,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text(
-                                          'username123',
-                                          style: TextStyle(
+                                        Text(
+                                          comment.username,  // Display the username
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         const SizedBox(width: 8),
                                         Expanded(
-                                          child: Text(_comments[index]),
+                                          child: Text(comment.comment),// Display the comment text
                                         ),
                                       ],
                                     ),
@@ -383,24 +380,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //Function to add the comment
   Future<void> addsComment(String creator) async {
+    // Capture comment text
     String commentText = _commentController.text;
 
     // Check if we are capturing the text input
-    //print("User input: $description"); //THIS WROK
+    print("User input: $commentText"); //THIS WROK
 
     if (commentText.isNotEmpty) {
       setState(() {
         // Add the new comment to the list
-        _comments.add(Comment(username: 'username123', comment: commentText) as String);
+        _comments.add(Comment(username: 'username123', comment: commentText));
         // Clear the input field after adding the comment
         _commentController.clear();
       });
 
       // Add the comment to the database (if required)
-      await authorization.addCommentToDatabase(creator, commentText);
+      //await authorization.addCommentToDatabase(creator, commentText);
 
-      // Debugging to see if the comment is added
-      //print('Comment added: $description');
+      // Debugging log to check if comment is added to the list
+      print("Comment list after addition: $_comments");
       print("Current comments list: $commentText");
     } else {
       print("No comment added, input field was empty.");
