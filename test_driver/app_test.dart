@@ -102,7 +102,7 @@ void main() {
       await Future.delayed(const Duration(seconds: 1));
 
       // Wait for the dialog to appear (if there is any confirmation dialog or form)
-      // await driver?.waitFor(find.text(''));
+      await driver?.waitFor(find.text(''));
     });
 
  
