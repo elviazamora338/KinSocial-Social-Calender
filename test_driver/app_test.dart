@@ -221,22 +221,78 @@ void main() {
 
     test(
       'user should be able to press heart button and it will filled with red',
-      () async {},
+      () async {
+        // Find the heart button by its key
+        final heartButton = find.byValueKey('heartButton');
+
+        // Tap the heart button
+        await driver?.tap(heartButton);
+
+        // Wait for the UI to reflect the like state change (you might need a small delay if async)
+        await Future.delayed(const Duration(milliseconds: 500));
+
+        // Check if the heart button is filled with red (we can check by color change or state)
+        final heartColor = find.byValueKey('heartFilledRed');  // Assuming you assign a key to the filled red heart state
+        expect(await driver?.getText(heartColor), 'filled'); // You can customize how you check it.
+      },
     );
 
     test(
       'user should be able to press comment button and text field will appear',
-      () async {},
+      () async {
+        // Find the comment button by its key
+        final commentButton = find.byValueKey('commentButton');
+
+        // Tap the comment button
+        await driver?.tap(commentButton);
+
+        // Check if the comment text field appears by finding it by its key
+        final commentField = find.byValueKey('commentTextField');
+        expect(await driver?.getText(commentField), isNotNull);
+      },
     );
 
     test(
       'send button for comment should be work',
-      () async {},
+      () async {
+        // Find the comment button and tap to reveal the text field
+        final commentButton = find.byValueKey('commentButton');
+        await driver?.tap(commentButton);
+
+        // Find the comment text field and input text
+        final commentTextField = find.byValueKey('commentTextField');
+        await driver?.tap(commentTextField);
+        await driver?.enterText('This is a test comment');
+
+        // Find and tap the send button
+        final sendButton = find.byValueKey('sendButton');
+        await driver?.tap(sendButton);
+
+        // Verify if the send button worked (you can check this by ensuring the text field is cleared)
+        expect(await driver?.getText(commentTextField), '');
+      },
     );
 
     test(
       'comment records can be shown under the text field after press send button',
-      () async {},
+      () async {
+        // Find the comment button and tap to reveal the text field
+        final commentButton = find.byValueKey('commentButton');
+        await driver?.tap(commentButton);
+
+        // Find the comment text field and input text
+        final commentTextField = find.byValueKey('commentTextField');
+        await driver?.tap(commentTextField);
+        await driver?.enterText('This is a test comment');
+
+        // Find and tap the send button
+        final sendButton = find.byValueKey('sendButton');
+        await driver?.tap(sendButton);
+
+        // Check if the new comment appears in the comment list by finding it with the comment text
+        final commentInList = find.text('This is a test comment');
+        expect(await driver?.getText(commentInList), 'This is a test comment');
+      },
     );
   });
 
