@@ -42,6 +42,24 @@ class _TasksScreenState extends State<TasksScreen> {
       drawer: const Drawer(
         child: MenuScreen(),
       ),
-    );
+      // Button on bottom right of screen
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //add functionality here
+          print('Testing the button'); //prints in console, can remove this later - K
+        },
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          side: const BorderSide(
+            color:  Color(0xFF028090),
+            width: 3.0,
+            ),
+          ),
+          child: const Icon(Icons.add, color: Color(0xFF028090),),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      );
   }
 }
