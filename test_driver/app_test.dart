@@ -88,6 +88,15 @@ void main() {
 
       // welcome screen
     });
+
+    test('should be able to add a task', () async{
+      //adding a new task
+      print('Tapping the add button');
+      //clicking the add button
+      await driver?.tap(find.byValueKey('addTaskButton'));
+      //add a delay in case driver takes a while to response
+      await Future.delayed(const Duration(seconds: 1));
+    });
  
   
   });
