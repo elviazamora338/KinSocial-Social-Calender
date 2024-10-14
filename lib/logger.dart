@@ -1,3 +1,4 @@
+/*
 // lib/logger.dart
 import 'package:logging/logging.dart';
 
@@ -16,3 +17,4 @@ void setupLogging() {
 }
 
 Logger get logger => _logger; // Getter to access the logger
+*/

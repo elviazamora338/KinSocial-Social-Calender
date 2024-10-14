@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
-//import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/models/authorization.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:app_swe2024/screens/menu_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 Authorization authorization = Authorization();
-// the image 
+// the image
 File? uploaded;
 
 //Model for comments
@@ -25,13 +25,14 @@ class Comment {
   Comment({required this.username, required this.comment});
 }
 
-
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _commentController = TextEditingController();
   String _description = '';
 
   bool _isLiked = false;
   bool _isCommenting = false;
+  // Store comments as objects of Comment class
   final List<String> _comments = [];
 
   @override
@@ -76,14 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               // Define the action when the user icon is pressed
             },
-
           ),
         ],
       ),
       drawer: const Drawer(
         child: MenuScreen(),
       ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -137,7 +136,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
             Visibility(
                 visible: _isExpanded,
                 child: Column(
@@ -270,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Expanded(
                                   child: TextField(
                                     // This should be linked to capture the input
-                                    controller: _descriptionController,
+                                    controller: _commentController,
                                     enabled: true, // Ensure it's enabled
                                     decoration: const InputDecoration(
                                       hintText: 'Add a comment...',
@@ -373,25 +371,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> addsDescription(String creator) async {
     String description = _descriptionController.text;
 
-    // Check if we are capturing the text input
-    //print("User input: $description"); //THIS WROK
-
-    if (description.isNotEmpty) {
+    if (_description.isNotEmpty) {
       setState(() {
         _description = description;
-        _comments.add(description); // Add the new comment to the list
-        // Clear the input field after adding the comment
-        _descriptionController.clear();
       });
 
       //could add to database?? idk how that works.. kinda like line 192
-      await authorization.addCommentToDatabase(creator, description);
+      // await authorization.addDescriptionToDatabase(creator, description);
+    }
+  }
+
+  //Function to add the comment
+  Future<void> addsComment(String creator) async {
+    String commentText = _commentController.text;
+
+    // Check if we are capturing the text input
+    //print("User input: $description"); //THIS WROK
+
+    if (commentText.isNotEmpty) {
+      setState(() {
+        // Add the new comment to the list
+        _comments.add(Comment(username: 'username123', comment: commentText) as String);
+        // Clear the input field after adding the comment
+        _commentController.clear();
+      });
+
+      // Add the comment to the database (if required)
+      await authorization.addCommentToDatabase(creator, commentText);
 
       // Debugging to see if the comment is added
       //print('Comment added: $description');
-      print("Current comments list: $_comments");
+      print("Current comments list: $commentText");
     } else {
-      print("No comment added, input field was empty."); //THIS
+      print("No comment added, input field was empty.");
     }
   }
 
