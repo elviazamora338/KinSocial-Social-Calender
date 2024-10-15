@@ -159,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           // Heart Icon with red fill on press
                           IconButton(
+                            key: const Key('heartButton'),
                             icon: Icon(
                               _isLiked
                                   ? Icons.favorite
@@ -176,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           // Comment Icon
                           IconButton(
+                            key: const Key('commentButton'), // Assign a key for testing
                             icon: const Icon(
                               Icons.chat_bubble_outline,
                               color: Colors.black,
@@ -224,6 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: TextField(
+                                  key: const Key('commentTextField'),
                                   controller: _descriptionController,
                                   decoration: const InputDecoration(
                                     hintText: 'Enter description',
@@ -281,6 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 
                                 IconButton(
+                                  key: const Key('sendButton'),
                                   icon: const Icon(Icons.send),
                                   onPressed: () {
                                     //Check if the button press works
