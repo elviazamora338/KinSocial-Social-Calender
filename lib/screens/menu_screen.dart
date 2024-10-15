@@ -1,3 +1,7 @@
+import 'package:app_swe2024/screens/calendar_screen.dart';
+import 'package:app_swe2024/screens/home_screen.dart';
+import 'package:app_swe2024/screens/tasks_screen.dart';
+import 'package:app_swe2024/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -28,7 +32,7 @@ class MenuScreen extends StatelessWidget {
               style: TextStyle(color: Colors.black),
             ),
             onTap: () {
-              // Handle navigation to Home
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
             },
           ),
           ListTile(
@@ -38,7 +42,7 @@ class MenuScreen extends StatelessWidget {
               style: TextStyle(color: Colors.black),
             ),
             onTap: () {
-              // Handle navigation to Calendar
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CalendarScreen()));
             },
           ),
           ListTile(
@@ -49,6 +53,7 @@ class MenuScreen extends StatelessWidget {
             ),
             onTap: () {
               // Handle navigation to Tasks
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TasksScreen()));
             },
           ),
           ListTile(
@@ -59,9 +64,10 @@ class MenuScreen extends StatelessWidget {
             ),
             onTap: () {
               // Handle navigation to Tasks
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
             },
           ),
-          
+
         ],
       ),
     );
