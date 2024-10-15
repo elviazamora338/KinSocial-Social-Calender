@@ -252,7 +252,18 @@ void main() {
       print(diagnostics);
 
     });
-  
+  });
+
+  group('Happy Paths for Profile Tab ', () {
+    test("User should be able to open Profile tab", () async {
+      await driver?.tap(find.byTooltip('User Profile'));
+      await Future.delayed(const Duration(seconds: 3));
+      await driver?.tap(find.text('My Account'));
+      await Future.delayed(const Duration(seconds: 3));
+    });
+  });
+  group("Menu navigation Happy Paths", (){
+
 
     test(
       'user should be able to press comment button and text field will appear',
