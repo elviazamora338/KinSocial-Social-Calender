@@ -88,6 +88,23 @@ void main() {
 
       // welcome screen
     });
+
+    test('should be able to add a task', () async {
+      // Wait for the 'addTaskButton' to appear
+      print('Waiting for the add button');
+      await driver?.waitFor(find.byValueKey('addTaskButton'));
+      
+      // Adding a new task
+      print('Tapping the add button');
+      await driver?.tap(find.byValueKey('addTaskButton'));
+      
+      // Adding a short delay in case the driver takes a while to respond
+      await Future.delayed(const Duration(seconds: 1));
+
+      // Wait for the dialog to appear (if there is any confirmation dialog or form)
+      await driver?.waitFor(find.text(''));
+    });
+
  
   
   });
