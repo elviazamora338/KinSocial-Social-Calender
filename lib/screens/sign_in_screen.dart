@@ -3,6 +3,8 @@ import 'package:app_swe2024/screens/login_screen.dart';
 import 'package:app_swe2024/screens/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }

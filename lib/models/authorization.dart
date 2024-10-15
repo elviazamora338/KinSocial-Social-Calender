@@ -56,9 +56,9 @@ class Authorization {
         print("No records found in the Users table.");
       } else {
         // Print all records from the Users table
-        result.forEach((row) {
+        for (var row in result) {
           print("Username: ${row['Username']}");
-        });
+        }
       }
     } catch (e) {
       // Print any errors that occur
@@ -168,12 +168,12 @@ class Authorization {
   }
 
   // function to login
-  void signIn(BuildContext context, TextEditingController _usernameController, TextEditingController _passwordController, TextEditingController? _reEnterPassword)
+  void signIn(BuildContext context, TextEditingController usernameController, TextEditingController passwordController, TextEditingController? reEnterPassword)
   {
-    String username = _usernameController.text;
-    String password = _passwordController.text;
+    String username = usernameController.text;
+    String password = passwordController.text;
    // Check if reEnterPassword is provided and not null before accessing its text
-    String ? reEnterPassword = _reEnterPassword?.text;
+    String ? reEnterPassword = reEnterPassword?.text;
     
     // calling the validate function to check input of user
     String result = validate(username, password, reEnterPassword);

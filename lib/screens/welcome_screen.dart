@@ -5,6 +5,8 @@ import 'package:app_swe2024/screens/sign_in_screen.dart';
 import 'package:app_swe2024/screens/home_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -81,7 +83,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             // for now create a function to navigate or insert navigate functionality for user to go to
             // Home Screen with dummy button -E
             ElevatedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
                style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF019C9F),

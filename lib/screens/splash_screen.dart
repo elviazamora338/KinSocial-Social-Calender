@@ -3,6 +3,8 @@ import 'package:app_swe2024/screens/sign_in_screen.dart';
 import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

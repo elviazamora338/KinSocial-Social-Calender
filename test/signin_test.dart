@@ -2,11 +2,8 @@
 // The test will check if the username and password is empty, if the username is empty,
 // if the password is empty, if the password is incorrect and if the username is not found in the database
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app_swe2024/screens/login_screen.dart';
 import 'package:app_swe2024/models/authorization.dart';
-import 'package:app_swe2024/main.dart';
 
 void main() {
   group('validate', (){

@@ -1,7 +1,5 @@
-import 'package:app_swe2024/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
-import 'package:app_swe2024/screens/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
