@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/welcome_screen.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -197,5 +196,7 @@ class Authorization {
     });
     }
   }
+
+  addCommentToDatabase(String creator, String description) {}
 
 }

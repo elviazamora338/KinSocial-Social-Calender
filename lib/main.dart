@@ -1,11 +1,36 @@
-import 'package:app_swe2024/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
-import 'package:app_swe2024/screens/welcome_screen.dart';
+import 'package:flutter_driver/driver_extension.dart';
+//import 'package:logging/logging.dart';
+
+/*
+// Create a logger instance
+final Logger _logger = Logger('MyAppLogger');
+*/
 
 void main() {
+  /*
+  //The logger is not need unless wants to change 'print' to 'logger.info'
+  // Configure the logger
+  _setupLogging();
+  // Log when the app starts
+  _logger.info('Application started');
+  */
+
+  //enableFlutterDriverExtension();
+  // Your main app widget
   runApp(const MyApp());
 }
+
+/*
+void _setupLogging() {
+  // Set the logging level to ALL (or customize as needed)
+  Logger.root.level = Level.ALL;
+  // Listen for log records
+  Logger.root.onRecord.listen((LogRecord rec) {
+    _logger.log(rec.level, '${rec.time}: ${rec.message}');
+  });
+}*/
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -40,6 +65,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  @override
   const MyHomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -58,18 +84,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  /*
   int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
+      // Log the increment action
+      _logger.info('Increment button pressed. Current count: $_counter');
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      // Log the new counter value
+      _logger.info('Counter incremented to: $_counter');
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
-      ),
+      ), /*
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -106,6 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
+          
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -122,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.*/
     );
   }
 }
