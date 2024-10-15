@@ -1,20 +1,26 @@
-import 'package:app_swe2024/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
-import 'package:app_swe2024/screens/welcome_screen.dart';
-import 'package:logging/logging.dart';
+//import 'package:logging/logging.dart';
 
+/*
 // Create a logger instance
 final Logger _logger = Logger('MyAppLogger');
+*/
 
 void main() {
+  /*
+  //The logger is not need unless wants to change 'print' to 'logger.info'
   // Configure the logger
   _setupLogging();
   // Log when the app starts
   _logger.info('Application started');
+  */
+
+  // Your main app widget
   runApp(const MyApp());
 }
 
+/*
 void _setupLogging() {
   // Set the logging level to ALL (or customize as needed)
   Logger.root.level = Level.ALL;
@@ -22,7 +28,7 @@ void _setupLogging() {
   Logger.root.onRecord.listen((LogRecord rec) {
     _logger.log(rec.level, '${rec.time}: ${rec.message}');
   });
-}
+}*/
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -57,6 +63,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  @override
   const MyHomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning

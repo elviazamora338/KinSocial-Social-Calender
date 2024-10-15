@@ -161,6 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           IconButton(
                             key: const Key('heartButton'),
                             icon: Icon(
+                              
                               _isLiked
                                   ? Icons.favorite
                                   : Icons.favorite_border_outlined,
@@ -265,6 +266,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: TextField(
+                                    // Assign key to the TextField
+                                    key: const Key('commentTextField'),
                                     // This should be linked to capture the input
                                     controller: _commentController,
                                     enabled: true, // Ensure it's enabled
