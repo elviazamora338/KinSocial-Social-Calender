@@ -16,19 +16,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back_ios,
+            Icons.arrow_back,
             color: Color(0xFFD0EDF2),
           ),
           tooltip: 'Back',
           onPressed: () {
-             Navigator.push(
-              context,MaterialPageRoute(builder: (context) => SplashScreen())
-            );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SplashScreen()));
           },
-        ), 
-        title: const Text("Welcome",
+        ),
+        title: const Text(
+          "Welcome",
           style: TextStyle(
-            color:  Color(0xFFD0EDF2),
+            color: Color(0xFFD0EDF2),
             fontSize: 20,
             fontFamily: "Martel",
             fontWeight: FontWeight.bold,
@@ -41,22 +41,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               color: Color(0xFFD0EDF2),
             ),
             tooltip: 'Profile',
-            onPressed: (){},
+            onPressed: () {},
           ),
         ],
         backgroundColor: const Color(0xFF028090),
-      ), 
+      ),
       backgroundColor: const Color(0xFFD0EDF2),
-      body:Center(
+      body: Center(
         // creating a column
         child: Column(
           // making sure it's in the center of screen
           mainAxisAlignment: MainAxisAlignment.center,
           // children of the column
-          children: 
-          [
+          children: [
             // the text title is welcome
-            const Text("Welcome!",
+            const Text(
+              "Welcome!",
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: Color(0xFF1A5E63),
@@ -64,45 +64,47 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 fontFamily: "Sansita",
               ),
             ),
-            const Text("Choose Group",
+            const Text(
+              "Choose Group",
               style: TextStyle(
                 // need to add font family
                 fontFamily: "CormorantInfant",
                 fontSize: 20,
                 fontStyle: FontStyle.italic,
-                color: Color(0XFF028090),          
+                color: Color(0XFF028090),
               ),
             ),
             const SizedBox(height: 20),
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Need to create a function to insert as many buttons depending on how many groups
             // user has in database (This is part of Database Sprint Task)
             // for now create a function to navigate or insert navigate functionality for user to go to
             // Home Screen with dummy button -E
-            ElevatedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-            },
-               style: ElevatedButton.styleFrom(
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              },
+              style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF019C9F),
                 minimumSize: const Size(130, 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-               ), 
-              child: const Text("Group 1",
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Text(
+                "Group 1",
                 style: TextStyle(
-                  color:  Color(0xFFD0EDF2),
+                  color: Color(0xFFD0EDF2),
                   fontSize: 15,
                   fontFamily: "Martel",
                 ),
-              ), 
+              ),
             )
-
           ],
         ),
       ),
     );
   }
-  
 }

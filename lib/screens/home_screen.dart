@@ -6,6 +6,7 @@ import 'package:app_swe2024/models/authorization.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:app_swe2024/screens/menu_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 Authorization authorization = Authorization();
-// the image 
+// the image
 File? uploaded;
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // When the screen loads, check for an existing image for 'username1'
     checkExistingImage('username1');
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
               tooltip: 'Menu',
               icon: const Icon(Icons.menu, color: Color(0xFFD0EDF2)),
               onPressed: () {
-                Scaffold.of(context).openDrawer(); // Open the drawer using the context from Builder
+                Scaffold.of(context)
+                    .openDrawer(); // Open the drawer using the context from Builder
               },
             );
           },
@@ -56,17 +59,17 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             tooltip: 'User Profile',
-            icon: const Icon(Icons.account_circle_rounded, color: Color(0xFFD0EDF2), size: 30.0),
+            icon: const Icon(Icons.account_circle_rounded,
+                color: Color(0xFFD0EDF2), size: 30.0),
             onPressed: () {
-            // Define the action when the user icon is pressed
-            },  
+              // Define the action when the user icon is pressed
+            },
           ),
         ],
       ),
       drawer: const Drawer(
         child: MenuScreen(),
       ),
-       
       body: Column(
         children: [
           Container(
@@ -99,14 +102,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,  // Aligns widgets to the right
+                  mainAxisAlignment:
+                      MainAxisAlignment.end, // Aligns widgets to the right
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0),
                       child: IconButton(
                         key: const Key('arrowIcon'),
                         icon: Icon(
-                          _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                          _isExpanded
+                              ? Icons.keyboard_arrow_up
+                              : Icons.keyboard_arrow_down,
                         ),
                         onPressed: _toggleVisibility,
                       ),
@@ -121,97 +127,101 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                 Visibility(
-                  visible: _isExpanded,
-                  child: Column(
-                    children: [
-                      // Display the image if it's available
-                      uploaded != null
-                      //Displayed the image right under username bar,
-                    ? SizedBox(
-                         width: MediaQuery.of(context).size.width,
-                         height: 250,
-                         child: Image.file(
-                            uploaded!,
-                            fit: BoxFit.cover,
-                         ),
-                      )
-                    : const Text("No Image Selection"),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(8.0,8.0,8.0,0.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                  Visibility(
+                      visible: _isExpanded,
+                      child: Column(
                         children: [
-                          Icon(Icons.favorite_border_outlined, color: Colors.black, size: 30.0),
-                          SizedBox(width: 6),
-                          Icon(Icons.chat_bubble_outline, color: Colors.black, size: 30.0),
-                          SizedBox(width: 6),
-                          Icon(Icons.add_circle_outline, color: Colors.black, size: 30.0),
-                        ],
-                      ),
-                    ),
-
-                  // Adds the description
-                  _description.isNotEmpty
-                    ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        _description,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                    : Container(),
-                  if(uploaded != null)
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0,0.0,8.0,8.0),
-                      child: Row(
-                        children: [
-                          const Text(
-                            'username123',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                          // Display the image if it's available
+                          uploaded != null
+                              //Displayed the image right under username bar,flutte
+                              ? SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 250,
+                                  child: Image.file(
+                                    uploaded!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : const Text("No Image Selection"),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.favorite_border_outlined,
+                                    color: Colors.black, size: 30.0),
+                                SizedBox(width: 6),
+                                Icon(Icons.chat_bubble_outline,
+                                    color: Colors.black, size: 30.0),
+                                SizedBox(width: 6),
+                                Icon(Icons.add_circle_outline,
+                                    color: Colors.black, size: 30.0),
+                              ],
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: TextField(
-                              controller: _descriptionController,
-                              decoration: const InputDecoration(
-                                hintText: 'Enter description',
-                                hintStyle: TextStyle(
-                                color: Color(0xFF028090),
-                              ),
-                              filled: true,
-                              fillColor: Color(0xFFD0EDF2),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.zero,
-                                borderSide: BorderSide.none,
-                                ),
+
+                          // Adds the description
+                          _description.isNotEmpty
+                              ? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    _description,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                          if (uploaded != null)
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    8.0, 0.0, 8.0, 8.0),
+                                child: Row(
+                                  children: [
+                                    const Text(
+                                      'username123',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: TextField(
+                                        controller: _descriptionController,
+                                        decoration: const InputDecoration(
+                                          hintText: 'Enter description',
+                                          hintStyle: TextStyle(
+                                            color: Color(0xFF028090),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color(0xFFD0EDF2),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.zero,
+                                            borderSide: BorderSide.none,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                          ElevatedButton(
+                            onPressed: () {
+                              pickAndUploadImage('username1');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                            ),
+                            child: const Text(
+                              "Upload Image",
+                              style: TextStyle(
+                                color: Colors.white,
                               ),
                             ),
-                          )
+                          ),
                         ],
-                      )
-                      
-                    ),
-                  ElevatedButton(
-                    onPressed: (){ pickAndUploadImage('username1'); },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: const Text(
-                      "Upload Image",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  ],)
-                  ),
+                      )),
                 ],
               ),
             ),
@@ -220,9 +230,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
   // Check if there is an existing image in the database for the given creator
   Future<void> checkExistingImage(String creator) async {
-    Uint8List? existingImage = await authorization.getImageFromDatabase(creator);
+    Uint8List? existingImage =
+        await authorization.getImageFromDatabase(creator);
     if (existingImage != null) {
       // Convert the image bytes to a File object
       Directory tempDir = await getTemporaryDirectory();
@@ -236,10 +248,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   //Function to add the description
-  Future<void> addsDescription(String creator) async{
+  Future<void> addsDescription(String creator) async {
     String description = _descriptionController.text;
 
-    if(_description.isNotEmpty){
+    if (_description.isNotEmpty) {
       setState(() {
         _description = description;
       });
@@ -248,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
- Future<void> pickAndUploadImage(String creator) async {
+  Future<void> pickAndUploadImage(String creator) async {
     // Image picker
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);

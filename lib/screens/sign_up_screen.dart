@@ -21,7 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
          leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back_ios,
+            Icons.arrow_back,
             color: Color.fromARGB(255, 208, 237, 242),
           ),
           tooltip: 'Back',
