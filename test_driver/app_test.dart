@@ -23,10 +23,8 @@ void main() {
     print('Tapping "Login" button');
     await driver?.tap(find.text('Login'));
     await Future.delayed(const Duration(seconds: 1)); // Add
-
-   
-    // your code here
   });
+
     test('should be able to successfully login', () async {
 
       // entering fake username
@@ -42,6 +40,7 @@ void main() {
       await driver?.tap(find.byValueKey('signInButton'));
       //should get successful login text
       expect(await driver?.getText(find.text('Login Successful')), 'Login Successful');
+      // should be in the welcome screen
      
     });
     test("should see welcome screen if sign up successful", () async {
@@ -81,50 +80,26 @@ void main() {
       await driver?.tap(find.byValueKey('signInButton'));
       //should get successful login text
       expect(await driver?.getText(find.text('Login Successful')), 'Login Successful');
-    
-    });
-  test("should see welcome screen if login successsful", () async {
-
-
-////////////////////////////////////////////////////////////////////////
-///      REMOVE THIS SECTION IN ORDER TO TEST GROUP BUTTON TO HOME SCREEN
-      //should get successful login text
-      expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
       // Go back to the main screen using the back button on the app bar
-      //print('Tapping back icon to return to main screen');
-      //await Future.delayed(const Duration(seconds: 1));
-      //await driver?.tap(find.byTooltip('Back'));
-      //await Future.delayed(const Duration(seconds: 3));
-///////////////////////////////////////////////////////////////////////////////
-    });
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-///  Here you will create a test to check if the button works correctly -E
-    test("user should be able to choose a group", () async {
-
-      // driver should tap button with the text "Group1"
-      await driver?.tap(find.text('Group 1'));
-      // Button should take user to the group's home page and so
-      // the driver should find the text "Home"
-      expect(await driver?.getText(find.text('Home')), 'Home');
-      
-    });
-    // testing if upload button is present
-    test("Uploading images button", () async {
-      expect(await driver?.getText(find.text("Upload Image")), "Upload Image");
-      /////////////////////////////////////////////////////////////////////////////
-      /// Remove later on -E
-      // // Go back to the main screen using the back button on the app bar
       print('Tapping back icon to return to main screen');
       await Future.delayed(const Duration(seconds: 1));
       await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 3));
-    },skip:true);
 
+      // welcome screen
+    });
+ 
+  
   });
     
-
   group('Sad Paths', () {
     test("should get warning if Sign Up fields missing", () async {
+       // Go back to the main screen using the back button on the app bar
+      // print('Tapping back icon to return to main screen');
+      // await driver?.tap(find.byTooltip('Back'));
+      // await Future.delayed(const Duration(seconds: 1));
+      // // main
+
       // sign up button
       await driver?.tap(find.text('Sign Up'));
       await Future.delayed(const Duration(seconds: 1)); 
@@ -160,19 +135,22 @@ void main() {
       await driver?.tap(find.byValueKey('signInButton'));
       // Verify that the warning is shown
       expect(await driver?.getText(find.text('Passwords do not match')), 'Passwords do not match');
-    },skip:true);
-    test('should get warning if Login field missing',() async
-    {
-//////////////////////////////////////////////////////////////////////////////////////
-       // Go back to the main screen using the back button on the app bar
+        // Go back to the main screen using the back button on the app bar
       print('Tapping back icon to return to main screen');
       await driver?.tap(find.byTooltip('Back'));
       await Future.delayed(const Duration(seconds: 1));
+      //main
+      // sign up 
+    });
+    test('should get warning if Login field missing',() async
+    {
+//////////////////////////////////////////////////////////////////////////////////////
+     
       await driver?.tap(find.text('Login'));
       await Future.delayed(const Duration(seconds: 1)); 
 ///////////////////////////////////////////////////////////////////////////////////////////
      //Attempting to login without username
-     print('Testing login warnings');
+      print('Testing login warnings');
       await driver?.tap(find.byValueKey('passwordField'));
       await driver?.enterText('password');
 
@@ -196,7 +174,7 @@ void main() {
       // Verify that the warning is shown
       expect(await driver?.getText(find.text('Password is empty')), 'Password is empty');
 
-    },skip:true);
+    });
 
 ////////////// WILL NEED TO ADD YOUR CODE HERE FOR VERIFICATION OF DATABASE -E  ///////////////////////////
     test('should not be able to login with wrong password', () async {
@@ -209,14 +187,49 @@ void main() {
     }, skip:true);
 
    });
+  group('Home Happy Paths', (){
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+///  Here you will create a test to check if the button works correctly -E
+    test("user should be able to choose a group", () async {
+      await driver?.tap(find.byValueKey('passwordField'));
+      await driver?.enterText('password');
+
+      await driver?.tap(find.byValueKey('usernameField'));
+      await driver?.enterText('username12');
+      print("signing in for test");
+      // Attempt to sign in without entering a username
+      await driver?.tap(find.byValueKey('signInButton'));
+
+
+      expect(await driver?.getText(find.text('Welcome!')), 'Welcome!');
+      // driver should tap button with the text "Group1"
+      await driver?.tap(find.text('Group 1'));
+      // Button should take user to the group's home page and so
+      // the driver should find the text "Home"
+      expect(await driver?.getText(find.text('Home')), 'Home');
+      
+    });
     test('user should be able to toggle arrow icon', () async {
+     
+      print("tabbing arrow");
       await driver?.tap(find.byValueKey('arrowIcon'));
       await Future.delayed(const Duration(seconds: 3));
-      //need to add more to the test- K
-    }
-    );
 
-    group('Happy Paths for Menu Tab\n', () {
+      //need to add more to the test- K
+    });
+      // testing if upload button is present
+    test("Uploading images button", () async {
+
+      expect(await driver?.getText(find.text("Upload Image")), "Upload Image");
+      /////////////////////////////////////////////////////////////////////////////
+      /// Remove later on -E
+      // // Go back to the main screen using the back button on the app bar
+    });
+
+  }); 
+   
+
+  group('Happy Paths for Menu Tab\n', () {
     test("User should be able to open menu tab", () async {
       await driver?.tap(find.byTooltip('Menu'));
       await Future.delayed(const Duration(seconds: 3));
@@ -224,8 +237,26 @@ void main() {
       await Future.delayed(const Duration(seconds: 3));
     });
   }, );
-   
+
+    test('user should be able to naviagte through menu tab', () async {
+      print('Testing Home');
+      await driver?.tap(find.text('Home'));
+      expect(await driver?.getText(find.text('Home')), 'Home');
+      await driver?.tap(find.byTooltip('Menu'));
+
+      print('Testing Calendar');
+      await driver?.tap(find.text('Calendar'));
+      expect(await driver?.getText(find.text('Calendar')), 'Calendar');
+      await driver?.tap(find.byTooltip('Menu'));
+
+      print('Testing Tasks');
+      await driver?.tap(find.text('Tasks'));
+      expect(await driver?.getText(find.text('Tasks')), 'Tasks');
+      await driver?.tap(find.byTooltip('Menu'));
+
+      print('Testing Change Group');
+      await driver?.tap(find.text('Change group'));
+      expect(await driver?.getText(find.text('Welcome')), 'Welcome');
+    });
     //on every page
 }
-
-
