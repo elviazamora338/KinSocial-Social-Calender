@@ -227,7 +227,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: TextField(
-                                  key: const Key('commentTextField'),
                                   controller: _descriptionController,
                                   decoration: const InputDecoration(
                                     hintText: 'Enter description',
