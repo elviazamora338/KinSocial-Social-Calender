@@ -41,3 +41,22 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+/*
+android {
+    compileSdkVersion 33   // Make sure this is at least 31 or higher
+
+    //Guidelines for applicationId:////////////////////////////////////////////
+    //    1. com: This is the top-level domain, typically com (for commercial).
+    //    2. companyname: Replace example with your company or developer name.
+    //    3. appname: Replace your_flutter_app with your app's name.
+    ///////////////////////////////////////////////////////////////////////////
+
+    defaultConfig {
+        applicationId "com.example.your_flutter_app"
+        minSdkVersion 21
+        targetSdkVersion 33  // Ensure this is 31 or higher
+        versionCode 1
+        versionName "1.0"
+    }
+}*/
