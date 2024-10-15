@@ -80,9 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      
       drawer: const Drawer(
         child: MenuScreen(),
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -99,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.only(left: 20.0),
                         child: CircleAvatar(
                           radius: 20,
-                          backgroundImage: AssetImage('profile.jpg'),
+                          backgroundColor: Colors.pink,
                         ),
                       ),
                       SizedBox(width: 10),
@@ -136,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+
             Visibility(
                 visible: _isExpanded,
                 child: Column(
@@ -242,7 +245,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-
                             ],
                           )),
 
@@ -297,6 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                             ),
+
 
                             // Display the comments
                             SizedBox(

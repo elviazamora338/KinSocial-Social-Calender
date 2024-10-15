@@ -305,29 +305,55 @@ void main() {
     });
     },
   );
-
+  
 /*
-  test('user should be able to naviagte through menu tab', () async {
-    print('Testing Home');
-    await driver?.tap(find.text('Home'));
-    expect(await driver?.getText(find.text('Home')), 'Home');
-    await driver?.tap(find.byTooltip('Menu'));
+  group("Menu navigation Happy Paths", (){
+    test('user should be able to naviagte through menu tab', () async {
 
-    print('Testing Calendar');
-    await driver?.tap(find.text('Calendar'));
-    expect(await driver?.getText(find.text('Calendar')), 'Calendar');
-    await driver?.tap(find.byTooltip('Menu'));
+      await driver?.tap(find.byTooltip('Menu'));
+      print('Testing Change Group');
+      await driver?.tap(find.text('Change group'));
+      expect(await driver?.getText(find.text('Welcome')), 'Welcome');
+      await driver?.tap(find.text('Group 1'));
 
-    print('Testing Tasks');
-    await driver?.tap(find.text('Tasks'));
-    expect(await driver?.getText(find.text('Tasks')), 'Tasks');
-    await driver?.tap(find.byTooltip('Menu'));
+      await driver?.tap(find.byTooltip('Menu'));
+      print('Testing Calendar');
+      await driver?.tap(find.text('Calendar'));
+      expect(await driver?.getText(find.text('Calendar')), 'Calendar');
+     
+      await driver?.tap(find.byTooltip('Menu'));
+      print('Testing Home');
+      await driver?.tap(find.text('Home'));
+      expect(await driver?.getText(find.text('Home')), 'Home');
+      
 
-    print('Testing Change Group');
-    await driver?.tap(find.text('Change group'));
-    expect(await driver?.getText(find.text('Welcome')), 'Welcome');
-  });*/
-  //on every page
+      await driver?.tap(find.byTooltip('Menu'));
+      print('Testing Tasks');
+      await driver?.tap(find.text('Tasks'));
+      expect(await driver?.getText(find.text('Tasks')), 'Tasks');
+      // await driver?.tap(find.byTooltip('Menu'));
+
+    });
+   });*/
+    //on every page
+
+  group("Testing task page", (){
+    test('should be able to add a task', () async {
+    // Wait for the 'addTaskButton' to appear
+    print('Waiting for the add button');
+    await driver?.waitFor(find.byValueKey('addTaskButton'));
+
+    // Adding a new task
+    print('Tapping the add button');
+    await driver?.tap(find.byValueKey('addTaskButton'));
+
+    // Adding a short delay in case the driver takes a while to respond
+    await Future.delayed(const Duration(seconds: 1));
+
+    // Wait for the dialog to appear (if there is any confirmation dialog or form)
+    await driver?.waitFor(find.text(''));
+    });
+  });
 }
 
 extension on FlutterDriver? {
