@@ -223,35 +223,35 @@ void main() {
     });
 
 
-    test('user should be able to press heart button and it will fill with red', () async {
+  //   test('user should be able to press heart button and it will fill with red', () async {
 
-      /*
-      // Find the heart button by its key
-      final heartButton = find.byValueKey('heartButton');
+  //     /*
+  //     // Find the heart button by its key
+  //     final heartButton = find.byValueKey('heartButton');
 
-      // Tap the heart button
-      await driver?.tap(find.byValueKey('heartButton'));
+  //     // Tap the heart button
+  //     await driver?.tap(find.byValueKey('heartButton'));
 
-      // Wait for the UI to update
-      await Future.delayed(const Duration(seconds: 3));
+  //     // Wait for the UI to update
+  //     await Future.delayed(const Duration(seconds: 3));
 
-      // Check if the heart button is filled with red
-      final heartButtonState = await driver?.getText(heartButton);
+  //     // Check if the heart button is filled with red
+  //     final heartButtonState = await driver?.getText(heartButton);
 
-      // Check the state of the heart button
-      // Adjust this if necessary to check the state correctly
-      expect(heartButtonState, contains('filled')); 
-      */
+  //     // Check the state of the heart button
+  //     // Adjust this if necessary to check the state correctly
+  //     expect(heartButtonState, contains('filled')); 
+  //     */
 
       
-      // Find the heart button using the key
-      final diagnostics = await driver?.getRenderObjectDiagnostics(find.byValueKey('heartButton'));
-      // Tap the heart button
-      await driver?.tap(find.byValueKey('heartButton'));
-      // Output the diagnostics to check the widget's properties, including color
-      print(diagnostics);
+  //     // Find the heart button using the key
+  //     final diagnostics = await driver?.getRenderObjectDiagnostics(find.byValueKey('heartButton'));
+  //     // Tap the heart button
+  //     await driver?.tap(find.byValueKey('heartButton'));
+  //     // Output the diagnostics to check the widget's properties, including color
+  //     print(diagnostics);
 
-    });
+  //   });
   });
 
   group('Happy Paths for Profile Tab ', () {
@@ -308,7 +308,6 @@ void main() {
   },);
 
   
-/*
   group("Menu navigation Happy Paths", (){
     test('user should be able to naviagte through menu tab', () async {
 
@@ -334,12 +333,11 @@ void main() {
       await driver?.tap(find.text('Tasks'));
       expect(await driver?.getText(find.text('Tasks')), 'Tasks');
       // await driver?.tap(find.byTooltip('Menu'));
-
     });
-   });*/
+   });
     //on every page
 
-/*
+
   group("Testing task page", (){
     test('should be able to add a task', () async {
 
@@ -360,19 +358,8 @@ void main() {
     // Wait for the dialog to appear (if there is any confirmation dialog or form)
     await driver?.waitFor(find.text(''));
     });
-  });*/
+  });
 
-   group('Happy Paths for Menu Tab\n',(){
-    test("User should be able to open menu tab", () async {
-      await driver?.tap(find.byTooltip('Menu'));
-      await Future.delayed(const Duration(seconds: 3));
-      await driver?.tap(find.text('Home'));
-      await Future.delayed(const Duration(seconds: 3));
-    });
-    },
-  );
+ 
 }
 
-extension on FlutterDriver? {
-  getElementColor(SerializableFinder heartButtonFinder) {}
-}
