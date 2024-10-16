@@ -7,56 +7,55 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
- 
   final Authorization authorization = Authorization();
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       leading: IconButton(
+        leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back, 
+            Icons.arrow_back,
             color: Color.fromARGB(255, 208, 237, 242),
           ),
           onPressed: () {
             Navigator.pop(context);
           },
-        ), 
-        title: const Text("Login",
+        ),
+        title: const Text(
+          "Login",
           style: TextStyle(
             color: Color.fromARGB(255, 208, 237, 242),
             fontSize: 20,
             fontFamily: "Martel",
           ),
         ),
-      backgroundColor: const Color.fromARGB(255, 2, 128, 144),
-      ), 
+        backgroundColor: const Color.fromARGB(255, 2, 128, 144),
+      ),
       backgroundColor: const Color.fromARGB(255, 208, 237, 242),
       body: Center(
         child: Column(
           // making sure it's in the center of screen
           mainAxisAlignment: MainAxisAlignment.center,
           // children of the column
-          children: 
-          [
+          children: [
             // the text title is login
-            const Text("Login",
+            const Text(
+              "Login",
               textAlign: TextAlign.left,
               style: TextStyle(
-                color:  Color.fromARGB(255, 2, 128, 144),
+                color: Color.fromARGB(255, 2, 128, 144),
                 fontSize: 35,
                 fontFamily: "Sansita",
               ),
             ),
             // some spacing
             const SizedBox(height: 20),
-           
-              // the children of the container
+
+            // the children of the container
             Column(
               children: [
                 // the listtile for the username
@@ -76,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 15,
                         fontFamily: "Martel",
                       ),
-                      prefixIcon: Icon(Icons.perm_identity,
+                      prefixIcon: Icon(
+                        Icons.perm_identity,
                         color: Color.fromARGB(255, 1, 156, 159),
                       ),
                       hintText: "Enter Username",
@@ -106,7 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-              
 
                 // the listtile for the password
                 ListTile(
@@ -126,7 +125,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 15,
                         fontFamily: "Martel",
                       ),
-                      prefixIcon: Icon(Icons.password,
+                      prefixIcon: Icon(
+                        Icons.password,
                         color: Color.fromARGB(255, 1, 156, 159),
                       ),
                       hintText: "Enter Password",
@@ -136,19 +136,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontFamily: "Martel",
                       ),
                       // the border of the textfield
-                      border: OutlineInputBorder( 
+                      border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
                           // color of the border
-                          color: Color.fromARGB(255, 1, 156, 159), 
+                          color: Color.fromARGB(255, 1, 156, 159),
                         ),
                       ),
                       // when the textfield is enabled
                       enabledBorder: OutlineInputBorder(
-                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
                           // Border color when enabled
-                          color: Color.fromARGB(255, 1, 156, 159), 
+                          color: Color.fromARGB(255, 1, 156, 159),
                         ),
                       ),
                       // when the textfield is focused
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         borderSide: BorderSide(
                           // Border color when focused
-                          color: Color.fromARGB(255, 2, 128, 144), 
+                          color: Color.fromARGB(255, 2, 128, 144),
                         ),
                       ),
                     ),
@@ -164,13 +164,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 // some spacing
                 const SizedBox(
-                  height:20,
+                  height: 20,
                 ),
                 // the login button
                 ElevatedButton(
                   key: const Key('signInButton'),
                   onPressed: () {
-                    authorization.signIn(context, _usernameController, _passwordController, null);
+                    authorization.signIn(context, _usernameController,
+                        _passwordController, null);
                   },
                   // changing the sttyle of the button
                   style: ElevatedButton.styleFrom(
@@ -181,7 +182,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text("Login",
+                  child: const Text(
+                    "Login",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,
@@ -196,5 +198,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
- 
 }
