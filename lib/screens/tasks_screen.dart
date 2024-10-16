@@ -121,9 +121,41 @@ class _TasksScreenState extends State<TasksScreen> {
                   content: SizedBox(
                     height: 400,
                     width: 300, 
-                    child: Center(
-                      child: Text(''), // Empty for now, will be modify to add title, date & task
-                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20),
+                        TextField(
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 2, 128, 144),
+                          ),
+                          decoration: InputDecoration(
+                            labelText: 'Task Title',
+                            labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 2, 128, 144),
+                              fontSize: 15,
+                              fontFamily: "Martel",
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 2, 128, 144),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 2, 128, 144),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 2, 128, 144),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ),
                 );
               },

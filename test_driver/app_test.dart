@@ -308,7 +308,15 @@ void main() {
   },);
 
   
-/*
+   group('Happy Paths for Menu Tab\n',(){
+    test("User should be able to open menu tab", () async {
+      await driver?.tap(find.byTooltip('Menu'));
+      await Future.delayed(const Duration(seconds: 3));
+      await driver?.tap(find.text('Home'));
+      await Future.delayed(const Duration(seconds: 3));
+    });
+    },
+  );
   group("Menu navigation Happy Paths", (){
     test('user should be able to naviagte through menu tab', () async {
 
@@ -336,10 +344,10 @@ void main() {
       // await driver?.tap(find.byTooltip('Menu'));
 
     });
-   });*/
+   });
     //on every page
 
-/*
+
   group("Testing task page", (){
     test('should be able to add a task', () async {
 
@@ -360,17 +368,8 @@ void main() {
     // Wait for the dialog to appear (if there is any confirmation dialog or form)
     await driver?.waitFor(find.text(''));
     });
-  });*/
-
-   group('Happy Paths for Menu Tab\n',(){
-    test("User should be able to open menu tab", () async {
-      await driver?.tap(find.byTooltip('Menu'));
-      await Future.delayed(const Duration(seconds: 3));
-      await driver?.tap(find.text('Home'));
-      await Future.delayed(const Duration(seconds: 3));
-    });
-    },
-  );
+  });
+  
 }
 
 extension on FlutterDriver? {
