@@ -42,6 +42,72 @@ class _TasksScreenState extends State<TasksScreen> {
             );
           },
         ),
+                actions: <Widget> [
+          Builder (
+            builder: (BuildContext context) {
+              return PopupMenuButton<int>(
+                color: const Color(0xFF019c9f),
+                tooltip: 'User Profile',
+                icon: const Icon(Icons.account_circle_rounded,
+                    color: Color(0xFFD0EDF2), size: 30.0),
+                onSelected: (int value) {
+                  //_handleMenuAction(value, context);
+                },
+                itemBuilder: (BuildContext context) => [
+                  const PopupMenuItem(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(Icons.account_circle_rounded,
+                          color: Colors.black),
+                        ),
+                        Text(
+                          'My Account',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 2,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(Icons.settings,
+                          color: Colors.black)
+                        ),
+                        Text(
+                          'Settings',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 3, //value will add functionality, will have to be extracted to account_screen and use onSelect
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(Icons.logout,
+                          color: Colors.black)
+                        ),
+                        Text(
+                          'Logout',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+          
+        ],
       ),
       drawer: const Drawer(
         child: MenuScreen(),
