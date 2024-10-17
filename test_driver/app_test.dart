@@ -238,20 +238,19 @@ void main() {
       // Check if the heart button is filled with red
       final heartButtonState = await driver?.getText(heartButton);
 
-      // Check the state of the heart button
-      // Adjust this if necessary to check the state correctly
+     // Check the state of the heart button
+     // Adjust this if necessary to check the state correctly
       expect(heartButtonState, contains('filled')); 
-      */
+     */
 
-      
       // Find the heart button using the key
       final diagnostics = await driver?.getRenderObjectDiagnostics(find.byValueKey('heartButton'));
       // Tap the heart button
       await driver?.tap(find.byValueKey('heartButton'));
       // Output the diagnostics to check the widget's properties, including color
       print(diagnostics);
-
     });
+
     test(
       'user should be able to press comment button and text field will appear',
       () async {
@@ -328,7 +327,6 @@ void main() {
       expect(await driver?.getText(find.text('Tasks')), 'Tasks');
       await Future.delayed(const Duration(seconds: 3));
       //await driver?.tap(find.byTooltip('Menu'));
-
     });
    });
     //on every page
@@ -345,7 +343,6 @@ void main() {
       await driver?.tap(find.byValueKey('day_5'));
 
     });});
-
 
   group("Testing task page", (){
     test('should be able to add a task', () async {
@@ -371,7 +368,5 @@ void main() {
     await driver?.waitFor(find.text(''));
     });
   });
-
 }
-
 
