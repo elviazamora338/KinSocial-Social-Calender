@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/Elvia/swe/app_2024/app_swe2024/linux/flutter"
+    "cmake.sourceDirectory": "C:/Users/Elvia/swe/app_2024/app_swe2024/linux/flutter",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

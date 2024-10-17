@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:flutter_driver/driver_extension.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 //import 'package:logging/logging.dart';
 
 /*
@@ -8,7 +10,7 @@ import 'package:flutter_driver/driver_extension.dart';
 final Logger _logger = Logger('MyAppLogger');
 */
 
-void main() {
+void main() async {
   /*
   //The logger is not need unless wants to change 'print' to 'logger.info'
   // Configure the logger
@@ -17,9 +19,11 @@ void main() {
   _logger.info('Application started');
   */
 
-  //enableFlutterDriverExtension();
-  // Your main app widget
-  runApp(const MyApp());
+ WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+runApp(const MyApp());
 }
 
 /*
