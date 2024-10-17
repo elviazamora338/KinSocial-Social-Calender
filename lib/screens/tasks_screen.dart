@@ -42,8 +42,8 @@ class _TasksScreenState extends State<TasksScreen> {
             );
           },
         ),
-                actions: <Widget> [
-          Builder (
+        actions: <Widget>[
+          Builder(
             builder: (BuildContext context) {
               return PopupMenuButton<int>(
                 color: const Color(0xFF019c9f),
@@ -61,7 +61,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         Padding(
                           padding: EdgeInsets.only(right: 8.0),
                           child: Icon(Icons.account_circle_rounded,
-                          color: Colors.black),
+                              color: Colors.black),
                         ),
                         Text(
                           'My Account',
@@ -75,10 +75,8 @@ class _TasksScreenState extends State<TasksScreen> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Icon(Icons.settings,
-                          color: Colors.black)
-                        ),
+                            padding: EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.settings, color: Colors.black)),
                         Text(
                           'Settings',
                           style: TextStyle(fontSize: 15),
@@ -87,14 +85,13 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                   ),
                   const PopupMenuItem(
-                    value: 3, //value will add functionality, will have to be extracted to account_screen and use onSelect
+                    value:
+                        3, //value will add functionality, will have to be extracted to account_screen and use onSelect
                     child: Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Icon(Icons.logout,
-                          color: Colors.black)
-                        ),
+                            padding: EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.logout, color: Colors.black)),
                         Text(
                           'Logout',
                           style: TextStyle(fontSize: 15),
@@ -106,7 +103,6 @@ class _TasksScreenState extends State<TasksScreen> {
               );
             },
           ),
-          
         ],
       ),
       drawer: const Drawer(
@@ -151,20 +147,111 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
         ],
       ),
-
+      //to add tasks 
       floatingActionButton: FloatingActionButton(
         key: const ValueKey('addTaskButton'),
         onPressed: () {
+          //variables for editing text
+          TextEditingController titleController = TextEditingController();
+          TextEditingController locationController = TextEditingController();
+          TextEditingController dateController = TextEditingController();
+          TextEditingController timeController = TextEditingController();
+          TextEditingController noteController = TextEditingController();
+
           showDialog(
             context: context,
             builder: (BuildContext context) {
-              return const AlertDialog(
+              return AlertDialog(
                 content: SizedBox(
                   height: 400,
                   width: 300,
-                  child: Center(
-                    child: Text(
-                        ''), //// Empty for now, will be modify to add title, date & task
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [ //all your text inputs are in here 
+                      // Title TextField
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                          labelText: "Title",
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 1, 156, 159),
+                            fontSize: 15,
+                            fontFamily: "Martel",
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15), // Spacing between fields
+
+                      // Location TextField
+                      TextField(
+                        controller: locationController,
+                        decoration: const InputDecoration(
+                          labelText: "Location",
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 1, 156, 159),
+                            fontSize: 15,
+                            fontFamily: "Martel",
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+
+                      // Date TextField
+                      TextField(
+                        controller: dateController,
+                        decoration: const InputDecoration(
+                          labelText: "Date",
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 1, 156, 159),
+                            fontSize: 15,
+                            fontFamily: "Martel",
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+
+                      // Time TextField
+                      TextField(
+                        controller: timeController,
+                        decoration: const InputDecoration(
+                          labelText: "Time",
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 1, 156, 159),
+                            fontSize: 15,
+                            fontFamily: "Martel",
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+
+                      //note textfield
+                      TextField(
+                        controller: noteController,
+                        decoration: const InputDecoration(
+                          labelText: "Note",
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 1, 156, 159),
+                            fontSize: 15,
+                            fontFamily: "Martel",
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );
