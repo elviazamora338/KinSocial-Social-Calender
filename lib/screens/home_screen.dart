@@ -230,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 30.0,
                             ),
                             onPressed: () {
-                               incrementHearts();
+                               incrementCounter(type: 'heart');
                             },
                           ),
                           
@@ -354,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     print("Send button pressed"); //DOES WORKS
                                     // Trigger the comment addition
                                     addsComment('username123');
-                                    incrementComments();
+                                    incrementCounter(type: 'comment');
                                   },
                                 ),
                               ],
@@ -505,24 +505,25 @@ class _HomeScreenState extends State<HomeScreen> {
   int heartCounter = 0;
   int commentCounter = 0;
 
-  void incrementHearts() {
-    setState(() {
+  void incrementCounter({required String type}) {
+  setState(() {
+    if (type == 'heart') {
+      // Toggle like status
       _isLiked = !_isLiked;
       if (_isLiked) {
         heartCounter++;
       } else {
         if (heartCounter > 0) heartCounter--;
       }
-    });
-  }
-  void incrementComments() {
-    setState(() {
-      // _isCommenting = !_isCommenting;
+    } else if (type == 'comment') {
+      // Increment comments only when commenting
       if (_isCommenting) {
         commentCounter++;
       } else {
         if (commentCounter > 0) commentCounter--;
       }
-    });
-  }
+    }
+  });
+}
+
 }
