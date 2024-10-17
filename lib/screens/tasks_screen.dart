@@ -251,6 +251,31 @@ class _TasksScreenState extends State<TasksScreen> {
                           ),
                         ),
                       ),
+
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        key: const Key('saveButton'),
+                        onPressed: () {
+                        // should save
+                        }, 
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 1, 156, 159),
+                          // minimumSize: const Size(200, 40),
+                          minimumSize: const Size(300, 40),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: const Text(
+                          "Save",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontFamily: "Martel",
+                          ),
+                        ),
+                       
+                      ),
                     ],
                   ),
                 ),
