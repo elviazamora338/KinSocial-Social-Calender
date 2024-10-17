@@ -252,19 +252,6 @@ void main() {
       print(diagnostics);
 
     });
-  });
-
-  group('Happy Paths for Profile Tab ', () {
-    test("User should be able to open Profile tab", () async {
-      await driver?.tap(find.byTooltip('User Profile'));
-      await Future.delayed(const Duration(seconds: 3));
-      await driver?.tap(find.text('My Account'));
-      await Future.delayed(const Duration(seconds: 3));
-    });
-  });
-  group("Menu navigation Happy Paths", (){
-
-
     test(
       'user should be able to press comment button and text field will appear',
       () async {
@@ -295,8 +282,7 @@ void main() {
         await driver?.enterText('This is a test comment');
 
         // Find and tap the send button
-        final sendButton = find.byValueKey('sendButton');
-        await driver?.tap(sendButton);
+        await driver?.tap(find.byValueKey('sendButton'));
 
         // Verify if the send button worked (you can check this by ensuring the text field is cleared)
         expect(await driver?.getText(commentTextField), '');
@@ -305,10 +291,18 @@ void main() {
         expect(await driver?.getText(commentInList), 'This is a test comment');
       },
     );
-  },);
+  });
 
+  group('Happy Paths for Profile Tab ', () {
+    test("User should be able to open Profile tab", () async {
+      await driver?.tap(find.byTooltip('User Profile'));
+      await Future.delayed(const Duration(seconds: 3));
+      await driver?.tap(find.text('My Account'));
+      await Future.delayed(const Duration(seconds: 3));
+    });
+  });
   
-/*
+
   group("Menu navigation Happy Paths", (){
     test('user should be able to naviagte through menu tab', () async {
 
@@ -319,32 +313,48 @@ void main() {
       await driver?.tap(find.text('Group 1'));
 
       await driver?.tap(find.byTooltip('Menu'));
+      print('Testing Home');
+      await driver?.tap(find.text('Home'));
+      expect(await driver?.getText(find.text('Home')), 'Home');
+
+      await driver?.tap(find.byTooltip('Menu'));
       print('Testing Calendar');
       await driver?.tap(find.text('Calendar'));
       expect(await driver?.getText(find.text('Calendar')), 'Calendar');
      
       await driver?.tap(find.byTooltip('Menu'));
-      print('Testing Home');
-      await driver?.tap(find.text('Home'));
-      expect(await driver?.getText(find.text('Home')), 'Home');
-      
-
-      await driver?.tap(find.byTooltip('Menu'));
       print('Testing Tasks');
       await driver?.tap(find.text('Tasks'));
       expect(await driver?.getText(find.text('Tasks')), 'Tasks');
-      // await driver?.tap(find.byTooltip('Menu'));
+      await Future.delayed(const Duration(seconds: 3));
+      //await driver?.tap(find.byTooltip('Menu'));
 
     });
-   });*/
+   });
     //on every page
+  
+  group('Testing calendar page', (){
+    test('user able to see the calendar', () async {
+    
+      await driver?.tap(find.byTooltip('Menu'));
+      //await Future.delayed(const Duration(seconds: 3));
 
-/*
+      await driver?.tap(find.text('Calendar'));
+      await driver?.tap(find.byValueKey('next_month_button'));
+      // To tap on the 5th day of the month
+      await driver?.tap(find.byValueKey('day_5'));
+
+    });});
+
+
   group("Testing task page", (){
     test('should be able to add a task', () async {
 
     //await driver?.tap(find.byValueKey('arrowIcon'));
     //await Future.delayed(const Duration(seconds: 3));
+
+    await driver?.tap(find.byTooltip('Menu'));
+    await driver?.tap(find.text('Tasks'));
 
     // Wait for the 'addTaskButton' to appear
     print('Waiting for the add button');
@@ -360,19 +370,8 @@ void main() {
     // Wait for the dialog to appear (if there is any confirmation dialog or form)
     await driver?.waitFor(find.text(''));
     });
-  });*/
+  });
 
-   group('Happy Paths for Menu Tab\n',(){
-    test("User should be able to open menu tab", () async {
-      await driver?.tap(find.byTooltip('Menu'));
-      await Future.delayed(const Duration(seconds: 3));
-      await driver?.tap(find.text('Home'));
-      await Future.delayed(const Duration(seconds: 3));
-    });
-    },
-  );
 }
 
-extension on FlutterDriver? {
-  getElementColor(SerializableFinder heartButtonFinder) {}
-}
+
