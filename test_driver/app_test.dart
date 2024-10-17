@@ -367,6 +367,15 @@ void main() {
     // Wait for the dialog to appear (if there is any confirmation dialog or form)
     await driver?.waitFor(find.text(''));
     });
+    test('should be able to save task/event', () async{
+      print('Finding save button');
+      expect(await driver?.getText(find.text('Save')), 'Save');
+
+      print('tabbing save button');
+      // await driver?.tap(find.byTooltip('saveButton'));
+
+      //  add saving function and test it here - E
+    });
   });
 }
 
