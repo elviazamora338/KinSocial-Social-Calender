@@ -230,11 +230,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 30.0,
                             ),
                             onPressed: () {
-                              setState(() {
-                                _isLiked = !_isLiked;
-                              });
+                               incrementCounter(type: 'heart');
                             },
                           ),
+                          
+                          Text('$heartCounter'), 
                           //const SizedBox(width: 6),
 
                           // Comment Icon
@@ -251,14 +251,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                             },
                           ),
+                           Text('$commentCounter'),
                           const SizedBox(width: 6),
-
                           const Icon(Icons.add_circle_outline,
                               color: Colors.black, size: 30.0),
                         ],
                       ),
+                      
                     ),
-
+                     
                     // Adds the description
                     _description.isNotEmpty
                         ? Padding(
@@ -353,6 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     print("Send button pressed"); //DOES WORKS
                                     // Trigger the comment addition
                                     addsComment('username123');
+                                    incrementCounter(type: 'comment');
                                   },
                                 ),
                               ],
@@ -498,4 +500,30 @@ class _HomeScreenState extends State<HomeScreen> {
       _isExpanded = !_isExpanded;
     });
   }
+
+// will later get from database
+  int heartCounter = 0;
+  int commentCounter = 0;
+
+  void incrementCounter({required String type}) {
+  setState(() {
+    if (type == 'heart') {
+      // Toggle like status
+      _isLiked = !_isLiked;
+      if (_isLiked) {
+        heartCounter++;
+      } else {
+        if (heartCounter > 0) heartCounter--;
+      }
+    } else if (type == 'comment') {
+      // Increment comments only when commenting
+      if (_isCommenting) {
+        commentCounter++;
+      } else {
+        if (commentCounter > 0) commentCounter--;
+      }
+    }
+  });
+}
+
 }
