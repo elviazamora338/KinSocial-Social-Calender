@@ -151,6 +151,51 @@ class _TasksScreenState extends State<TasksScreen> {
       floatingActionButton: FloatingActionButton(
         key: const ValueKey('addTaskButton'),
         onPressed: () {
+
+  /*
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const AlertDialog(
+                  content: SizedBox(
+                    height: 400,
+                    width: 300, 
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20),
+                        TextField(
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 2, 128, 144),
+                          ),
+                          decoration: InputDecoration(
+                            labelText: 'Task Title',
+                            labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 2, 128, 144),
+                              fontSize: 15,
+                              fontFamily: "Martel",
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 2, 128, 144),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 2, 128, 144),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 2, 128, 144),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )*/
+
           //variables for editing text
           TextEditingController titleController = TextEditingController();
           TextEditingController locationController = TextEditingController();
