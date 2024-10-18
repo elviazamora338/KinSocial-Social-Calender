@@ -15,6 +15,9 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
+  DateTime selectedDate = DateTime.now(); // Track current date
+  List<Map<String, String>> tasks = []; // Task list
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,7 +150,7 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
         ],
       ),
-      //to add tasks 
+      //to add tasks
       floatingActionButton: FloatingActionButton(
         key: const ValueKey('addTaskButton'),
         onPressed: () {
@@ -212,7 +215,8 @@ class _TasksScreenState extends State<TasksScreen> {
                   width: 300,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [ //all your text inputs are in here 
+                    children: [
+                      //all your text inputs are in here
                       // Title TextField
                       TextField(
                         controller: titleController,
@@ -301,10 +305,11 @@ class _TasksScreenState extends State<TasksScreen> {
                       ElevatedButton(
                         key: const Key('saveButton'),
                         onPressed: () {
-                        // should save
-                        }, 
+                          // should save
+                        },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 1, 156, 159),
+                          backgroundColor:
+                              const Color.fromARGB(255, 1, 156, 159),
                           // minimumSize: const Size(200, 40),
                           minimumSize: const Size(300, 40),
                           shape: RoundedRectangleBorder(
@@ -319,7 +324,6 @@ class _TasksScreenState extends State<TasksScreen> {
                             fontFamily: "Martel",
                           ),
                         ),
-                       
                       ),
                     ],
                   ),
