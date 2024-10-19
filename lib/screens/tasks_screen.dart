@@ -4,6 +4,7 @@ import 'package:app_swe2024/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app_swe2024/models/authorization.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:app_swe2024/screens/menu_screen.dart';
 
@@ -231,6 +232,9 @@ class _TasksScreenState extends State<TasksScreen> {
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
                         ),
+                        onTap: () async{
+
+                        },
                       ),
                       const SizedBox(height: 15), // Spacing between fields
 
@@ -252,7 +256,12 @@ class _TasksScreenState extends State<TasksScreen> {
                       const SizedBox(height: 15),
 
                       // Date TextField
-                      TextField(
+                    TextSelectionTheme(
+                      data: const TextSelectionThemeData( //changes the color of the cursor after putting in date
+                        selectionColor: Color.fromARGB(255, 2, 128, 144),
+                        selectionHandleColor: Color.fromARGB(255, 2, 128, 144),
+                      ),
+                      child: TextField(
                         controller: dateController,
                         decoration: const InputDecoration(
                           labelText: "Date",
@@ -261,10 +270,58 @@ class _TasksScreenState extends State<TasksScreen> {
                             fontSize: 15,
                             fontFamily: "Martel",
                           ),
-                          border: OutlineInputBorder(
+                          border: OutlineInputBorder( //changes the colors of the text field borders
                             borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 2, 128, 144),
+                            ),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 2, 128, 144),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 2, 128, 144),
+                            ),
+                          ),
+                          
                         ),
+                        onTap: () async{
+                          DateTime? pickedDate = await showDatePicker( //mini calendar
+                            context: context, 
+                            initialDate: DateTime.now(), 
+                            firstDate: DateTime(2000), 
+                            lastDate: DateTime(2101),
+                            builder: (BuildContext context, Widget? child) {
+                            return Theme(
+                              data: ThemeData.light().copyWith(
+                                colorScheme: const ColorScheme.light(
+                                  primary: Color.fromARGB(255, 1, 156, 159), // Color of circle
+                                  onPrimary: Colors.white,           // Header text color
+                                  surface: Colors.white,  // Body background color
+                                  onSurface: Colors.black,           // Body text color
+                                ),
+                              dialogBackgroundColor: const Color(0xFFE1F5FE), // Background color of the dialog
+                              textButtonTheme: TextButtonThemeData(
+                                style: TextButton.styleFrom(
+                                foregroundColor: const Color.fromARGB(255, 1, 156, 159), // color for Ok & Cancel
+                                ),
+                              ),
+                            ),
+                            child: child ?? const SizedBox.shrink(),
+                          );
+                          },
+                          );
+                          if(pickedDate != null){
+                            String formattedDate = DateFormat('EEE, M/d/y').format(pickedDate);
+                            setState(() {
+                              dateController.text = formattedDate;
+                            });
+                          }
+                        },
+                      ),
                       ),
                       const SizedBox(height: 15),
 
@@ -348,6 +405,7 @@ class _TasksScreenState extends State<TasksScreen> {
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.endFloat, // FAB on the right
+
     );
   }
 }
